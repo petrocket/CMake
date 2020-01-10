@@ -119,6 +119,7 @@ cmGlobalGenerator::cmGlobalGenerator(cmake* cm)
   cm->GetState()->SetWatcomWMake(false);
   cm->GetState()->SetWindowsShell(false);
   cm->GetState()->SetWindowsVSIDE(false);
+  cm->GetState()->SetFastbuildMake(false);
 }
 
 cmGlobalGenerator::~cmGlobalGenerator()
