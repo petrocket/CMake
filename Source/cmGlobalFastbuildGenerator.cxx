@@ -172,10 +172,10 @@ void cmGlobalFastbuildGenerator::AppendDirectoryForConfig(
   }
 }
 
-void cmGlobalFastbuildGenerator::GetDocumentation(cmDocumentationEntry& entry)
+cmDocumentationEntry cmGlobalFastbuildGenerator::GetDocumentation()
 {
-  entry.Name = cmGlobalFastbuildGenerator::GetActualName();
-  entry.Brief = "Generates build.bff files.";
+  return { cmGlobalFastbuildGenerator::GetActualName(),
+         "Generates build.bff files."};
 }
 
 void cmGlobalFastbuildGenerator::Generate()

@@ -89,7 +89,7 @@ public:
   }
 
   /// Overloaded methods. @see cmGlobalGenerator::GetDocumentation()
-  static void GetDocumentation(cmDocumentationEntry& entry);
+  static cmDocumentationEntry GetDocumentation();
 
   static bool SupportsToolset() { return false; }
 
