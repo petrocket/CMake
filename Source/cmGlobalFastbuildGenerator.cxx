@@ -966,6 +966,8 @@ void cmGlobalFastbuildGenerator::WriteTargets(std::ostream& os)
         ((cmLocalCommonGenerator*)this->LocalGenerators[0].get())
           ->GetConfigNames()
           .front();
+      if (VCXProject.Config.empty())
+          VCXProject.Config = "Release";
       VCXProject.Target = "all";
       VCXProject.Folder = "CMakePredefinedTargets";
 
