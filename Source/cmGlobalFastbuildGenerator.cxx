@@ -28,6 +28,7 @@
 #include "cmDocumentationEntry.h"
 #include "cmFastbuildNormalTargetGenerator.h"
 #include "cmFastbuildUtilityTargetGenerator.h"
+#include "cmGeneratorExpression.h"
 #include "cmGeneratedFileStream.h"
 #include "cmGeneratorTarget.h"
 #include "cmGlobalGeneratorFactory.h"
@@ -1271,12 +1272,16 @@ void cmGlobalFastbuildGenerator::WriteTargets(std::ostream& os)
                      { ".UserProps" }, 2);
         }
         if (!VCXProject.LocalDebuggerCommand.empty()) {
+          std::string localDebuggerCommand = cmGeneratorExpression::Evaluate(
+            VCXProject.LocalDebuggerCommand, LocalGenerators[0].get(), VCXProject.Config);
           WriteVariable(*BuildFileStream, "LocalDebuggerCommand",
-                        Quote(VCXProject.LocalDebuggerCommand), 2);
+                        Quote(localDebuggerCommand), 2);
         }
         if (!VCXProject.LocalDebuggerCommandArguments.empty()) {
+          std::string localDebuggerCommandArguments = cmGeneratorExpression::Evaluate(
+            VCXProject.LocalDebuggerCommandArguments, LocalGenerators[0].get(), VCXProject.Config);
           WriteVariable(*BuildFileStream, "LocalDebuggerCommandArguments",
-                        Quote(VCXProject.LocalDebuggerCommandArguments), 2);
+                        Quote(localDebuggerCommandArguments), 2);
         }
         std::stringstream ss;
         WriteVariable(ss, "Platform", Quote(VCXProject.Platform), 3);
